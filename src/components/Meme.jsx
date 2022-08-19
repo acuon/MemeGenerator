@@ -4,7 +4,13 @@ import React from 'react'
 export default function Meme() {
   // console.table(memesData.data.memes)
 
-  const [memeImg, setMemeImg] = React.useState('')  // setiing empty string initially 
+  const [meme, setMeme] = React.useState({
+    topText: "",
+    bottomTextL: "",
+    randomImage: "http://i.imgflip.com/1bij.jpg"
+})
+
+const [allMemeImage, setAllMemeImage] = React.useState(memesData)
 
   function getMemeInfo() {
     const memesArray = memesData.data.memes;
@@ -14,7 +20,7 @@ export default function Meme() {
     // after clicking button cuz react does't rerender so we need to use useStat hooks which set the stat
     // of component it is like varible within the function
 
-    setMemeImg(memesArray[getRandomIndex].url)    // using useState
+    setMeme(memesArray[getRandomIndex].url)    // using useState
   }
 
   return (
