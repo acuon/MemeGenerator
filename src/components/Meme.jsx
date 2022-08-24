@@ -1,8 +1,6 @@
-import memesData from "../memesData";
-import React from "react";
+import React from 'react'
 
 export default function Meme() {
-  // console.table(memesData.data.memes)
 
   const [meme, setMeme] = React.useState({
     topText: "",
@@ -11,8 +9,13 @@ export default function Meme() {
   });
   // console.log(meme)
 
-  const [allMemeImage, setAllMemeImage] = React.useState(memesData);
-  // console.log(allMemeImage);
+  const [allMemes, setAllMemes] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch("https://api.imgflip.com/get_memes")
+      .then(response => response.json())
+      .then(data => setAllMemes(data.data.memes))
+  })
 
   function handleChange(event) {
     const { name, value } = event.target
@@ -25,21 +28,19 @@ export default function Meme() {
   }
 
   function getMemeImage() {
-    const memesArray = allMemeImage.data.memes;
-    const getRandomIndex = Math.floor(Math.random() * memesArray.length);
-    console.log(memesArray[getRandomIndex].url)
-    console.log(memesArray)
+    const getRandomIndex = Math.floor(Math.random() * allMemes.length);
+    console.log(allMemes[getRandomIndex].url)
+    // console.log(allMemes)
     // const memeUrl = memesArray[getRandomIndex].url
     // console.log(memeUrl); if we use memeUrl variable directly into img src in return it'll we not render
     // after clicking button cuz react does't rerender so we need to use useStat hooks which set the stat
     // of component it is like varible within the function
 
     setMeme((prevMeme) => {
-      // memesArray[getRandomIndex].url)
       console.log(prevMeme)
       return {
         ...prevMeme,
-        randomImage: memesArray[getRandomIndex].url
+        randomImage: allMemes[getRandomIndex].url
       }
     });
   }
