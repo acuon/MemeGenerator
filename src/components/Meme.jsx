@@ -50,7 +50,7 @@ export default function Meme() {
 
   function getMemeImage() {
     const getRandomIndex = Math.floor(Math.random() * allMemes.length);
-    console.log(allMemes[getRandomIndex].url)
+    // console.log(allMemes[getRandomIndex].url)
     // console.log(allMemes)
     // const memeUrl = memesArray[getRandomIndex].url
     // console.log(memeUrl); if we use memeUrl variable directly into img src in return it'll we not render
@@ -58,7 +58,7 @@ export default function Meme() {
     // of component it is like varible within the function
 
     setMeme((prevMeme) => {
-      console.log(prevMeme)
+      // console.log(prevMeme)
       return {
         ...prevMeme,
         randomImage: allMemes[getRandomIndex].url
