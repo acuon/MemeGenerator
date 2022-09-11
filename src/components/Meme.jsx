@@ -15,7 +15,7 @@ export default function Meme() {
     fetch("https://api.imgflip.com/get_memes")
       .then(response => response.json())
       .then(data => setAllMemes(data.data.memes))
-  })
+  }, [])
 
   /**
     useEffect takes a function as its parameter. If that function
